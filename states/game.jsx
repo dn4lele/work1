@@ -6,7 +6,7 @@ export class game {
     isstarted=false
     letters=[];
     id = 0 ;
-
+    word="";
     constructor() {
         makeObservable(this, {
             players:observable,
@@ -14,18 +14,19 @@ export class game {
             removefromgame:action,
 
             isstarted:observable,
-            word:computed,
+            word:observable,
 
             letters:observable,
           
         });
     }
   
-    get word() {    
+    newword() {    
         if(this.isstarted){
             const randomIndex = Math.floor(Math.random() * words.length);
-            
-            return words[randomIndex];
+            if(this.word == "")
+                this.word=words[randomIndex];
+            return this.word;
         }
         return "";
       }
@@ -35,7 +36,7 @@ export class game {
         if (index !== -1) {
             this.removefromgame(player.id);
         } else {
-            this.players.push({...player,points:0});
+            this.players.push(player);
         }
     }
 

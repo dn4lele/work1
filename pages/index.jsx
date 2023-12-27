@@ -27,7 +27,7 @@ export default function App() {
           </div>
           <div style={{flex: '3',padding: '10px' , border: '5px solid black'}}>
             <h1>game</h1>
-            <BoardG managegame={managegame}></BoardG>
+            <BoardG managegame={managegame} players={players}></BoardG>
           </div>
         </div>
       </>

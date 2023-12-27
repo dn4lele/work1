@@ -1,7 +1,7 @@
 import { BigHead } from "@bigheads/core";
 import { observer } from "mobx-react-lite";
 
- const Player = observer( ({bighead , name , id , remove ,changename=()=>{} , changepic=()=>{} , addtogame ,isonboard , points}) => {
+ const Player = observer( ({bighead , name , id , wins , remove ,changename=()=>{} , changepic=()=>{} , addtogame ,isonboard , points}) => {
 
     return(<>
         <div style={{border: '1px solid black'}} >
@@ -13,17 +13,22 @@ import { observer } from "mobx-react-lite";
 
                 <h2 onDoubleClick={()=>changename(id)}>{name}</h2>
                 {!isonboard && <>
-                    <input type="checkbox" onClick={()=>addtogame(id)} />
+                    <input type="checkbox"  onClick={()=>addtogame(id)} />
                     <button style={{ color: "red" }} onClick={() =>remove(id)}>X</button>
+                    <h3>wins:{wins}</h3>
                 </>
                 }
-               
+
+                {isonboard &&
+                <>
+                    {wins==null? <p><br/><br/><br/><h3>points:{points}</h3></p>:<h3>wins:{wins}</h3>}
+                </>
+
+                }
                 
             </div>
-            {isonboard && <>
-                    <h3>points:{points}</h3>
-                </>
-            }
+            
+            
         </div>
     </>);
 

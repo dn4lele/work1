@@ -17,7 +17,14 @@ export class PlayerStore {
   
     addPlayer() {
         let name= prompt("please enter player name");
-        this.players.push({ id: this.id++,   name:name, bighead: getRandomBighead()  });
+        if(name==null){
+            name="none"
+        }
+        else if(name.trim() == "" )
+        {
+            name="none"
+        }
+        this.players.push({ id: this.id++,   name:name, bighead: getRandomBighead()  , wins:0 ,points:0});
     }
 
     remove(id) {
