@@ -20,6 +20,10 @@ const BoardG = observer(({managegame,players}) => {
         managegame.word="";
         managegame.letters.clear();
         managegame.players.clear();
+        
+        players.players.forEach((player)=>{
+            player.pletters=[,];
+        });
     }
     function addwin(){
         let maxPoints = -1;
@@ -67,6 +71,8 @@ const BoardG = observer(({managegame,players}) => {
         }
         //good came here to add
         managegame.letters.push(alphabet[randomIndex]);
+        //console.log(managegame.players[randomplayerindex].name+"letters "+managegame.players[randomplayerindex].pletters)
+        managegame.players[randomplayerindex].pletters.push(alphabet[randomIndex]);
 
         if(managegame.word.includes(alphabet[randomIndex])){
             managegame.players[randomplayerindex].points++;
@@ -88,7 +94,7 @@ const BoardG = observer(({managegame,players}) => {
     return (<>
     <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
-            {managegame == null ? null : managegame.players.map(p => <Player name={p.name} bighead={p.bighead} id={p.id} points={p.points} isonboard={true}/>)}
+            {managegame == null ? null : managegame.players.map(p => <Player name={p.name} bighead={p.bighead} id={p.id} points={p.points} isonboard={true} platters={p.pletters} word={managegame.word}/>)}
         </div>
 
     <button onClick={()=>{managegame.isstarted=true; managegame.newword(); }} style={{width:"150px" ,height:"100px"}} disabled={!(managegame != null && managegame.players.length >= 2 && managegame.players.length <= 5 && managegame.isstarted==false )}>Start</button>

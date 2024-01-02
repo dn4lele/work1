@@ -33,7 +33,7 @@ export class game {
 
     addtogame(player) {
         const index = this.players.findIndex(p => p.id === player.id);
-        if (index !== -1) {
+        if (index != -1) {
             this.removefromgame(player.id);
         } else {
             this.players.push(player);

@@ -24,7 +24,7 @@ export class PlayerStore {
         {
             name="none"
         }
-        this.players.push({ id: this.id++,   name:name, bighead: getRandomBighead()  , wins:0 ,points:0});
+        this.players.push({ id: this.id++,   name:name, bighead: getRandomBighead()  , wins:0 ,points:0 , pletters:[,]});
     }
 
     remove(id) {

@@ -1,7 +1,7 @@
 import { BigHead } from "@bigheads/core";
 import { observer } from "mobx-react-lite";
 
- const Player = observer( ({bighead , name , id , wins , remove ,changename=()=>{} , changepic=()=>{} , addtogame ,isonboard , points}) => {
+ const Player = observer( ({bighead , name , id , wins , remove ,changename=()=>{} , changepic=()=>{} , addtogame ,isonboard , points , platters , word}) => {
 
     return(<>
         <div style={{border: '1px solid black'}} >
@@ -21,8 +21,36 @@ import { observer } from "mobx-react-lite";
 
                 {isonboard &&
                 <>
-                    {wins==null? <p><br/><br/><br/><h3>points:{points}</h3></p>:<h3>wins:{wins}</h3>}
-                </>
+{
+  wins == null ? 
+  (
+    <p>
+      <br/><br/><br/>
+      <h3>points: {points}</h3>
+      <br/><br/>    
+      <div style={{display:"flex"}}>
+      {platters.map((letter, index) => (
+        <>
+        <h3 key={index} style={{ color: word.includes(letter) ? "green" : "red" }}>
+            {letter} 
+        </h3>
+        <h3>,</h3>
+        </>
+        
+        
+        ))}
+      </div>
+      
+    
+        
+      
+    </p>
+  ) 
+  : 
+  (
+    <h3>wins: {wins}</h3>
+  )
+}                </>
 
                 }
                 
