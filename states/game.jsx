@@ -7,12 +7,13 @@ export class game {
     letters=[];
     id = 0 ;
     word="";
+    timeinterval=500
     constructor() {
         makeObservable(this, {
             players:observable,
             addtogame:action,
             removefromgame:action,
-
+            timeinterval:observable,
             isstarted:observable,
             word:observable,
 

@@ -29,7 +29,7 @@ const BoardG = observer(({managegame,players}) => {
         let maxPoints = -1;
         let winner = null;
         let isTie = false;
-
+        
         managegame.players.forEach(player => {
             if (player.points > maxPoints) {
                 maxPoints = player.points;
@@ -85,10 +85,14 @@ const BoardG = observer(({managegame,players}) => {
             guessinterval.current = setInterval(() => {
                 let randomplayerindex = Math.floor(Math.random() * managegame.players.length);
                 guessletter(randomplayerindex);
-            }, 500);
+            }, managegame.timeinterval);
         }
+
+        return () => {
+            clearInterval(guessinterval.current);
+        };
     
-    }, [managegame.isstarted]);
+    }, [managegame.isstarted, managegame.timeinterval]);
 
 
     return (<>
@@ -98,6 +102,13 @@ const BoardG = observer(({managegame,players}) => {
         </div>
 
     <button onClick={()=>{managegame.isstarted=true; managegame.newword(); }} style={{width:"150px" ,height:"100px"}} disabled={!(managegame != null && managegame.players.length >= 2 && managegame.players.length <= 5 && managegame.isstarted==false )}>Start</button>
+    <input type="range" min="80" max="1000" step="10" defaultValue={managegame.timeinterval} onChange={(e) => {
+        managegame.timeinterval = e.target.value;
+        //change interval time to managegame.timeinterval
+        
+        
+    }}></input>
+    <text>{managegame.timeinterval}</text>
     </div>
 
     <div style={{ display: "flex", justifyContent: "center" }}>

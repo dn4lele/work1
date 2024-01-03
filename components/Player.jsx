@@ -31,7 +31,7 @@ import { observer } from "mobx-react-lite";
       <div style={{display:"flex"}}>
       {platters.map((letter, index) => (
         <>
-        <h3 key={index} style={{ color: word.includes(letter) ? "green" : "red" }}>
+        <h3  style={{ color: word.includes(letter) ? "green" : "red" }}>
             {letter} 
         </h3>
         <h3>,</h3>
